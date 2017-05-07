@@ -7,13 +7,6 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-
-Discord = {
-    'token': config['bot']['token'],
-    'channel_id': config['bot']['channel_id'],
-    'channel': config['bot']['channel']
-}
-
 bot = discord.Client()
 
 
@@ -66,8 +59,8 @@ def on_ready():
     print(bot.user.id)
     print('------')
 
-    channel = discord.Object(id='277941647139012609')
+    channel = discord.Object(id=config['bot']['channel_id'])
     yield from bot.send_message(channel, "Heya")
 
 
-bot.run(Discord['token'])
+bot.run(config['bot']['token'])
