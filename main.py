@@ -14,7 +14,7 @@ bot = discord.Client()
 @asyncio.coroutine
 def on_message(message):
     # print(message.author)
-    print(message.content)
+    # print(message.content)
 
     # we do not want the bot to reply to itself
     if message.author == bot.user:
@@ -59,8 +59,8 @@ def on_ready():
     print(bot.user.id)
     print('------')
 
-    channel = discord.Object(id=config['bot']['channel_id'])
-    yield from bot.send_message(channel, "Heya")
+    # channel = discord.Object(id=config['bot']['channel_id'])
+    # yield from bot.send_message(channel, "Heya")
 
 
 bot.run(config['bot']['token'])
