@@ -11,10 +11,11 @@ The bot provides a list of commands:
 - `8ball` - ask a magic ball to know your fate
 - `dice` - roll a dice
 - `help` - list all commands
+- `github` - post link to this repo
 
 ## TODO
 
-- [ ] greet users
+- [x] greet users
 - [ ] stickers submission
 - [ ] add characters list
 - [ ] add docker configuration

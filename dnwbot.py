@@ -4,6 +4,7 @@ import configparser
 import inspect
 import random
 import os
+import string
 from magicball import MagicBall
 
 
@@ -16,12 +17,48 @@ class Response:
 
 class DNWBot(discord.Client):
     def __init__(self):
+        # TODO: add a full Config module
         self.config = configparser.ConfigParser()
         self.config.read('config.ini')
         self.auth = (self.config['credentials']['token'],)
         self.command_prefix = '/'
         self.magicball = MagicBall()
         super().__init__()
+
+    async def say_hello(self, message):
+        keywords = [
+            'ey',
+            'hello',
+            'hi',
+            'flops',
+            'g\'day',
+            'evening',
+            'morning',
+            'good day',
+            'good morning',
+            'guten tag',
+            'ahoy',
+            'hey',
+            'hola',
+            'o/',
+            'sup'
+        ]
+
+        greetings = [
+            'Hello, {}',
+            'Ahoy {}',
+            'Welcome back, {}',
+            '{} \o/'
+        ]
+
+        content = message.content.lower().translate(None, string.punctuation).strip()
+        words = content.split()
+        s1 = set(keywords)
+        s2 = set(words)
+        i = s1.intersection(s2)
+        if len(i):
+            msg = random.choice(greetings).format(message.author.mention)
+            await self.send_message(message.channel, msg)
 
     async def cmd_hello(self, author):
         msg = 'Hello {}. Have a :pancakes:'.format(author.mention)
@@ -96,12 +133,13 @@ class DNWBot(discord.Client):
     async def on_message(self, message):
         await self.wait_until_ready()
 
-        message_content = message.content.strip()
-        if not message_content.startswith(self.command_prefix):
-            return
-
         if message.author == self.user:
             print("Ignoring command from myself (%s)" % message.content)
+            return
+
+        message_content = message.content.strip()
+        if not message_content.startswith(self.command_prefix):
+            self.say_hello(message)
             return
 
         command, *args = message_content.split()
