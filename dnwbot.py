@@ -4,6 +4,7 @@ import configparser
 import inspect
 import random
 import os
+from magicball import MagicBall
 
 
 class Response:
@@ -19,6 +20,7 @@ class DNWBot(discord.Client):
         self.config.read('config.ini')
         self.auth = (self.config['credentials']['token'],)
         self.command_prefix = '/'
+        self.magicball = MagicBall()
         super().__init__()
 
     async def cmd_hello(self, author):
@@ -48,6 +50,11 @@ class DNWBot(discord.Client):
         msg = 'Here are all the available stickers:\n' + msg
 
         return Response(msg)
+
+    async def cmd_8ball(self, question):
+        # TODO: add delay for some magic
+        answer = self.magicball.ask_question()
+        return Response(answer)
 
     async def cmd_dice(self, sides=6):
         sides = int(sides)
