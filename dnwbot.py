@@ -51,7 +51,7 @@ class DNWBot(discord.Client):
             '{} \o/'
         ]
 
-        content = message.content.lower().translate(None, string.punctuation).strip()
+        content = message.content.lower().translate(string.punctuation).strip()
         words = content.split()
         s1 = set(keywords)
         s2 = set(words)
@@ -139,7 +139,7 @@ class DNWBot(discord.Client):
 
         message_content = message.content.strip()
         if not message_content.startswith(self.command_prefix):
-            self.say_hello(message)
+            await self.say_hello(message)
             return
 
         command, *args = message_content.split()
