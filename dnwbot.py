@@ -18,6 +18,7 @@ class Response:
 class DNWBot(discord.Client):
     def __init__(self):
         # TODO: add a full Config module
+        # TODO: implement logging and exception handling
         self.config = configparser.ConfigParser()
         self.config.read('config.ini')
         self.auth = (self.config['credentials']['token'],)
