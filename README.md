@@ -17,7 +17,6 @@ The bot provides a list of commands:
 
 - [x] greet users
 - [ ] stickers submission
-- [ ] add characters list
 - [ ] add docker configuration
 - [ ] PANCAKES
 - [ ] add characters list with links to their pages
