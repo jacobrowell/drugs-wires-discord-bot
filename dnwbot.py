@@ -53,7 +53,7 @@ class DNWBot(discord.Client):
         sides = int(sides)
         if sides > 1:
             random.seed()
-            number = random.randrange(1, sides, 1)
+            number = random.randint(1, sides)
             msg = "A dice rolled {}".format(number)
         elif sides == 0:
             msg = "Answer is 1, what did you expect?"
