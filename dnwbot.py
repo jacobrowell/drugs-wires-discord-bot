@@ -69,6 +69,24 @@ class DNWBot(discord.Client):
 
         return Response(msg)
 
+    async def cmd_github(self):
+        msg = "https://github.com/KristobalJunta/dnw-discord-bot"
+        return Response(msg)
+
+    async def cmd_help(self):
+        helpmsg = "**Commands**\n```"
+        commands = []
+
+        for att in dir(self):
+            if att.startswith('cmd_') and att != 'cmd_help':
+                command_name = att.replace('cmd_', '').lower()
+                commands.append("{}{}".format(self.command_prefix, command_name))
+
+        helpmsg += ", ".join(commands)
+        helpmsg += "```"
+
+        return Response(helpmsg)
+
     async def on_ready(self):
         print('Logged in as')
         print(self.user.name)
