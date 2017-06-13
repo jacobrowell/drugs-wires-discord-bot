@@ -41,6 +41,14 @@ class DNWBot(discord.Client):
         else:
             return False
 
+    async def cmd_stickers(self):
+        files = os.listdir('stickers')
+        names = sorted(map(lambda name: name.replace('.png', ''), files))
+        msg = ', '.join(names)
+        msg = 'Here are all the available stickers:\n' + msg
+
+        return Response(msg)
+
     async def cmd_dice(self, sides=6):
         sides = int(sides)
         if sides > 1:
