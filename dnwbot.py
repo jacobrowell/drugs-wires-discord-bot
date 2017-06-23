@@ -140,7 +140,8 @@ class DNWBot(discord.Client):
 
         message_content = message.content.strip()
         if not message_content.startswith(self.command_prefix):
-            await self.say_hello(message)
+            # Temporarily remove this to get rid of false greetings
+            # await self.say_hello(message)
             return
 
         command, *args = message_content.split()
