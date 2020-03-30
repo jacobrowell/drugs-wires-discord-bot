@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "dogbot",
+      "script": "main.py",
+      "interpreter": ".venv/bin/python"
+    }
+  ]
+}

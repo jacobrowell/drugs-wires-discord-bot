@@ -1,4 +1,10 @@
-.idea
+.idea/
+.vscode/
+
+.venv
 env
+
 config.ini
+
 __pycache__
+*.pyc
